@@ -32,6 +32,7 @@ $CapsLock::
 	
 	if (ErrorLevel)
 		;long, do nothing
+		return
 
 	else {
 		KeyWait, CapsLock, D T0.1
