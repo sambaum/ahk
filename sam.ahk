@@ -23,7 +23,29 @@ CapsLock & o::SendInput, ^!o
 CapsLock & p::SendInput, ^+p
 CapsLock & u::SendInput, ^+u
 
+; Alt esc
 sc029::SendInput, {Escape}
+
+; Toggle Capslock only on double tap
+$CapsLock::
+	KeyWait, CapsLock, T0.1
+	
+	if (ErrorLevel)
+		;long, do nothing
+
+	else {
+		KeyWait, CapsLock, D T0.1
+
+		if (ErrorLevel)
+			; single, do nothing
+			return
+		
+		else
+			SetCapsLockState % !GetKeyState("CapsLock", "T")
+	}
+
+	KeyWait, CapsLock
+return
 
 ; ------------------------------------------------------------------------------
 ; EOF
