@@ -22,19 +22,6 @@ return
 ;================================================================================================
 ; Hot keys with CapsLock modifier.  See https://autohotkey.com/docs/Hotkeys.htm#combo
 ;================================================================================================
-; Get DEFINITION of selected word.    
-CapsLock & d::
-    ClipboardGet()
-    Run, http://www.google.com/search?q=define+%clipboard%     ; Launch with contents of clipboard
-    ClipboardRestore()
-Return
-
-; GOOGLE the selected text.
-CapsLock & g::
-    ClipboardGet()
-    Run, http://www.google.com/search?q=%clipboard%             ; Launch with contents of clipboard
-    ClipboardRestore()
-Return
 
 ; Navigation
 CapsLock & j::SendInput, {Left}
@@ -70,33 +57,10 @@ CapsLock & z:: return
 
 
 ;================================================================================================
-; Other Hot keys 
+; Other Hot keys
 ;================================================================================================
 ; Clip Board
 CapsLock & v::SendInput, {Raw}%Clipboard%
 
 ; Alt esc
 sc029::SendInput, {Escape}
-
-
-;================================================================================================
-; Clipboard helper functions.
-;================================================================================================
-ClipboardGet()
-{
-    OldClipboard:= ClipboardAll                         ;Save existing clipboard.
-    Clipboard:= ""
-    Send, ^c                                            ;Copy selected test to clipboard
-    ClipWait 0
-    If ErrorLevel
-        {
-        MsgBox, No Text Selected!
-        Return
-        }
-}
-
-
-ClipboardRestore()
-{
-    Clipboard:= OldClipboard
-}
