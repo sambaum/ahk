@@ -5,6 +5,8 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #Persistent
 
 ; LCtrl + LAlt + LWin + v
-<^<!<#v::Send, {Text}%Clipboard%
+<^<!<#v::
+  Sleep, 100 ; Maybe helps with the first character sometimes not being sent
+  Send, {Text}%Clipboard%
 
 ; EOF
